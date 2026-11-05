@@ -16,7 +16,7 @@ app = modal.App("quantus-kryptex-v4")
 
 @app.function(
     image=quantus_image,
-    gpu="H100",
+    gpu="A10G",
     timeout=86400
 )
 def run_miner():
