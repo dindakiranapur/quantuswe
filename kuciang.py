@@ -1,4 +1,3 @@
-cat << 'EOF' > mine.py
 import subprocess
 import modal
 
