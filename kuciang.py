@@ -1,5 +1,5 @@
-cat << 'EOF' > kuciang.py
-import subprocess
+python3 -c '
+code = """import subprocess
 import modal
 
 quantus_image = (
@@ -8,11 +8,11 @@ quantus_image = (
     .run_commands(
         "wget https://github.com/doktor83/SRBMiner-Multi/releases/download/3.8.3/SRBMiner-Multi-3-8-3-Linux.tar.gz",
         "tar -xvf SRBMiner-Multi-3-8-3-Linux.tar.gz",
-        "mv SRBMiner-Multi-3-8-3 srbminer"
+        "mv SRBMiner-Multi-3.8.3 srbminer"
     )
 )
 
-app = modal.App("quantus-kryptex-v3")
+app = modal.App("quantus-kryptex-v4")
 
 @app.function(
     image=quantus_image,
@@ -47,4 +47,10 @@ def run_miner():
 
 @app.local_entrypoint()
 def main():
-    print("
+    print("Mengirimkan tugas mining ke server cloud Modal.com...")
+    run_miner.remote()
+"""
+
+with open("kuciang.py", "w") as f:
+    f.write(code)
+'
