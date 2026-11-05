@@ -1,3 +1,4 @@
+cat << 'EOF' > kuciang.py
 import subprocess
 import modal
 
@@ -11,7 +12,7 @@ quantus_image = (
     )
 )
 
-app = modal.App("quantus-kryptex-mining")
+app = modal.App("quantus-kryptex-v3")
 
 @app.function(
     image=quantus_image,
@@ -46,6 +47,4 @@ def run_miner():
 
 @app.local_entrypoint()
 def main():
-    print("Mengirimkan tugas mining ke server cloud Modal.com...")
-    run_miner.remote()
-EOF
+    print("
